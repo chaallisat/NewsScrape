@@ -31,7 +31,7 @@ db.on("error", function(error) {
 
 
 app.get("/", function(req, res) {
-    res.render("index", icecreams[i]);
+    res.render("index");
 });
 
 // Retrieve data from the db
@@ -48,9 +48,9 @@ app.get("/all", function(req, res) {
 
 // Scrape info from news site
 app.get("/scrape", function(req, res) {
-  axios.get("https://news.ycombinator.com/").then(function(response) {
+  axios.get("https://www.fox10phoenix.com/tag/crime-publicsafety").then(function(response) {
     const $ = cheerio.load(response.data);
-    $(".title").each(function(i, element) {
+    $("h3.title").each(function(i, element) {
       const title = $(element).children("a").text();
       const link = $(element).children("a").attr("href");
 
